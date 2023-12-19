@@ -3,7 +3,14 @@ import 'package:meals_app/domain/entities/category.dart';
 import 'package:meals_app/domain/entities/meal.dart';
 
 // Constants in Dart should be written in lowerCamelcase.
-const availableCategories = [
+
+class LocalDataSource{
+  LocalDataSource();
+
+get availableCategoriesList => availableCategories;
+get dummyMealsList => dummyMeals;
+
+static const availableCategories = [
   Category(
     id: 'c1',
     title: 'Italian',
@@ -56,7 +63,7 @@ const availableCategories = [
   ),
 ];
 
-const dummyMeals = [
+static const dummyMeals = [
   Meal(
     id: 'm1',
     categories: [
@@ -406,3 +413,5 @@ const dummyMeals = [
     isLactoseFree: true,
   ),
 ];
+
+}
