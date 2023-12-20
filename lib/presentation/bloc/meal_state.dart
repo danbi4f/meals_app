@@ -1,18 +1,22 @@
 part of 'meal_bloc.dart';
 
-sealed class MealState extends Equatable {
-  const MealState();
-  @override
-  List<Object> get props => [];
-}
 
-final class MealInitial extends MealState {}
 
-final class DisplayMeals extends MealState {
-  DisplayMeals({required this.meals});
+final class MealsState extends Equatable {
+  const MealsState({required this.mealRepository});
 
-  final List<LocalDataSource> meals;
+  final MealRepository mealRepository;
 
   @override
-  List<Object> get props => [meals];
+  List<Object> get props => [mealRepository];
+
+  MealsState copyWith(
+    MealRepository? mealRepository,
+  ) {
+    return MealsState(
+      mealRepository: mealRepository ?? this.mealRepository,
+    );
+  }
 }
+
+
