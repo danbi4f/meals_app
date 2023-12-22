@@ -6,13 +6,36 @@ import 'package:meals_app/data/repositories/meal_repository.dart';
 import 'package:meals_app/presentation/bloc/category_bloc.dart';
 import 'package:meals_app/presentation/bloc/meal_bloc.dart';
 import 'package:meals_app/presentation/pages/categories_screen.dart';
+import 'package:meals_app/presentation/widgets/main_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    int selectedPageIndex = 0;
+    void selectPage(int index){
+      selectedPageIndex = index;
+    }
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Active page title'),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: selectPage,
+        currentIndex: selectedPageIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.set_meal),
+            label: 'categories'
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star),
+            label: 'Favorites'
+          ),
+        ],
+      ),
+      drawer: const MainDrawer(),
       body: MultiRepositoryProvider(
         providers: [
           RepositoryProvider(

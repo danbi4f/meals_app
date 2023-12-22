@@ -15,16 +15,16 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  List<Meal> mealsList() => BlocProvider.of<MealBloc>(context)
+  List<Meal> getMeal() => BlocProvider.of<MealBloc>(context)
       .mealRepository
       .dataLocal
       .dummyMealsList;
 
   selectCategory(BuildContext context, Category category) {
-    final filtredMeals = mealsList();
-    filtredMeals.where(
+    final mealsList = getMeal();
+    final filtredMeals = mealsList.where(
       (meal) => meal.categories.contains(category.id),
-    );
+    ).toList();
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => MealsScreen(
